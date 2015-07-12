@@ -1,0 +1,49 @@
+#!/bin/bash
+set -e
+exec > >(tee $0.log) 2>&1
+
+# check for Apple XCode
+xcode-select -v
+if [ $? -ne 0 ]; then
+  echo "Apple Xcode command line tools not installed!!!"
+  echo "Run 'xcode-select --install'"
+  echo "Once complete, restart your computer and re-run this script."
+  exit 1
+fi
+
+echo "--- Make /bin/zsh the default shell ---"
+read -s -p "password: " password
+echo
+echo $password | sudo -S chsh -s /bin/zsh $username
+
+echo "--- Install Homebrew ---"
+ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/install/master/install)"
+
+echo "--- Install Apps ---"
+brew bundle
+
+echo "--- Install Oh My ZSH ---"
+curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+
+echo "--- Update ~/.zshrc and ~/.bash_profile ---"
+config=$(cat zshrc-settings)
+echo $config >> ~/.zshrc
+echo $config >> ~/.bash_profile
+source ~/.zshrc
+
+echo "--- Install Rubies ---"
+RubyVersions=( '2.0.0-p645' '2.1.6' '2.2.2' );
+for version in "${RubyVersions[@]}"; do
+  ruby-install ruby $version
+done
+
+default_ruby=${RubyVersions[0]}
+echo "--- Set the Default Ruby Version to $default_ruby ---"
+chruby $default_ruby
+echo $default_ruby > ~/.ruby-version
+
+echo "--- Install Gems ---"
+cp .gemrc ~/.gemrc
+bundle install
+
+echo "--- Developer Tools Install Script Complete! ---"
