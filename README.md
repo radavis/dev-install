@@ -20,7 +20,7 @@ Then, restart your computer.
 ## Install your Ruby development environment
 
 ```
-./dev-install
+./dev_install
 ```
 
 ## Fix permissions on the home directory
@@ -28,5 +28,5 @@ Then, restart your computer.
 If the script bails out, it is likely that the permissions are screwed up.
 
 ```
-./fix-permissions
+./fix_permissions
 ```

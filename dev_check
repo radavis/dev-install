@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 exec > >(tee $0.log) 2>&1
 
 black="\033[0;30m"
@@ -29,19 +28,7 @@ warning() {
 }
 
 response() {
-  printf " ${yellow}Response:${no_color} ${white}$*${no_color}\n"
-}
-
-check_exit_code() {
-  exit_code=$1
-  positive_msg=$2
-  negative_msg=$3
-
-  if [ $exit_code -eq 0 ]; then
-    success $positive_msg
-  else
-    success $negative_msg
-  fi
+  printf " ${yellow}Response:${no_color} ${white}$*${no_color}\r\n"
 }
 
 check_zsh() {
@@ -60,23 +47,37 @@ check_zsh() {
 version() {
   cmd=$1
   flag=$2
-  version=$(eval "$1 $2")
-  check_exit_code $? "$cmd was detected!" "$cmd was not detected!"
-  response $version
+
+  if command -v $cmd >/dev/null; then
+    version=$(eval "$cmd $flag")
+    success "$cmd was detected"
+    response $version
+  else
+    warning "$cmd was not detected!"
+    response "$cmd not found"
+  fi
+}
+
+check_ruby() {
+  ruby_path=$(which ruby)
+  if [[ "$ruby_path" == "/Users/rd/.rubies"* ]]; then
+    ruby_version=$(ruby -v)
+    success "$ruby_version was detected in the correct location!"
+  else
+    warning "Not using ruby version manager!"
+  fi
+  response $ruby_path
 }
 
 main() {
-  version "xcode-select" "-v"
   check_zsh
+  version "xcode-select" "-v"
   version "brew" "-v"
+  check_ruby
+  version "heroku" "version"
   version "git" "--version"
   version "atom" "-v"
-
-  # check apps (atom git slack)
-  # oh-my-zsh
-  # chruby
-  # which ruby
-  # et
+  version "et" "-v"
 }
 
 main

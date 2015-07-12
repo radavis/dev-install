@@ -4,8 +4,6 @@ brew chruby
 brew git
 brew heroku-toolbelt
 brew imagemagick
-brew node
-brew redis
 brew ruby-install
 
 tap caskroom/cask
