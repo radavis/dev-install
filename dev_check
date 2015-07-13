@@ -31,19 +31,6 @@ response() {
   printf "\r\n  ${yellow}Response:${no_color} ${white}$*${no_color}\r\n"
 }
 
-check_zsh() {
-  username=$(whoami)
-  shell_name=$(finger $username | grep -o "Shell:.*")
-
-  if [[ "$shell_name" == "Shell: /bin/zsh" ]]; then
-    success "$username's shell is /bin/zsh!"
-  else
-    warning "$username's shell is not /bin/zsh!"
-  fi
-
-  response $shell_name
-}
-
 check() {
   cmd=$1
   flag=$2
@@ -70,6 +57,19 @@ check_ruby() {
   response $ruby_path
 }
 
+check_zsh() {
+  username=$(whoami)
+  shell_name=$(finger $username | grep -o "Shell:.*")
+
+  if [[ "$shell_name" == *"/bin/zsh" ]]; then
+    success "$username's shell is /bin/zsh!"
+  else
+    warning "$username's shell is not /bin/zsh!"
+  fi
+
+  response $shell_name
+}
+
 main() {
   check_zsh
   check "xcode-select" "-v"
@@ -80,6 +80,7 @@ main() {
   check "psql" "--version"
   check "atom" "-v"
   check "et" "-v"
+  check "rspec" "-v"
   check "rails" "-v"
 }
 
