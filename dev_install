@@ -4,7 +4,7 @@ exec > >(tee $0.log) 2>&1
 
 # check for Apple XCode
 xcode-select -v
-if [ $? -ne 0 ]; then
+if [ $? -ne 0 ]; then  # need to fix this check or remove
   echo "Apple Xcode command line tools not installed!!!"
   echo "Run 'xcode-select --install'"
   echo "Once complete, restart your computer and re-run this script."
@@ -20,16 +20,17 @@ echo "--- Install Homebrew ---"
 ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/install/master/install)"
 
 echo "--- Install Apps ---"
+brew tab Homebrew/bundle
 brew bundle
 
 echo "--- Install Oh My ZSH ---"
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 
 echo "--- Update ~/.zshrc and ~/.bash_profile ---"
-config=$(cat zshrc-settings)
+config=$(cat environment)
 echo $config >> ~/.zshrc
 echo $config >> ~/.bash_profile
-source ~/.zshrc
+source ~/.bash_profile
 
 echo "--- Install Rubies ---"
 RubyVersions=( '2.0.0-p645' '2.1.6' '2.2.2' );
@@ -47,3 +48,4 @@ cp .gemrc ~/.gemrc
 bundle install
 
 echo "--- Developer Tools Install Script Complete! ---"
+echo "Please run './dev_check' to verify the installation."
