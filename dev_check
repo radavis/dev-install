@@ -44,14 +44,14 @@ check_zsh() {
   response $shell_name
 }
 
-version() {
+check() {
   cmd=$1
   flag=$2
 
   if command -v $cmd >/dev/null; then
-    version=$(eval "$cmd $flag")
+    result=$(eval "$cmd $flag")
     success "$cmd was detected"
-    response $version
+    response $result
   else
     warning "$cmd was not detected!"
     response "$cmd not found"
@@ -60,24 +60,26 @@ version() {
 
 check_ruby() {
   ruby_path=$(which ruby)
-  if [[ "$ruby_path" == "/Users/rd/.rubies"* ]]; then
+
+  if [[ "$ruby_path" == "$HOME/.rubies"* ]]; then
     ruby_version=$(ruby -v)
-    success "$ruby_version was detected in the correct location!"
+    success "$ruby_version was detected in the home folder!"
   else
-    warning "Not using ruby version manager!"
+    warning "Not using a ruby version manager!"
   fi
+
   response $ruby_path
 }
 
 main() {
   check_zsh
-  version "xcode-select" "-v"
-  version "brew" "-v"
+  check "xcode-select" "-v"
+  check "brew" "-v"
   check_ruby
-  version "heroku" "version"
-  version "git" "--version"
-  version "atom" "-v"
-  version "et" "-v"
+  check "heroku" "version"
+  check "git" "--version"
+  check "atom" "-v"
+  check "et" "-v"
 }
 
 main
