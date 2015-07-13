@@ -2,6 +2,8 @@
 
 Installs all the stuff.
 
+__NOTE:__ This is alpha, and probably doesn't work, yet.
+
 ## Remove other Ruby Version Managers, first!
 
 ```
