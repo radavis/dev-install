@@ -28,7 +28,7 @@ warning() {
 }
 
 response() {
-  printf " ${yellow}Response:${no_color} ${white}$*${no_color}\r\n"
+  printf "\r\n  ${yellow}Response:${no_color} ${white}$*${no_color}\r\n"
 }
 
 check_zsh() {
@@ -48,13 +48,12 @@ check() {
   cmd=$1
   flag=$2
 
-  if command -v $cmd >/dev/null; then
+  if $(command -v $cmd >/dev/null); then
     result=$(eval "$cmd $flag")
     success "$cmd was detected"
     response $result
   else
-    warning "$cmd was not detected!"
-    response "$cmd not found"
+    warning "$cmd was not detected!\r\n"
   fi
 }
 
@@ -78,8 +77,10 @@ main() {
   check_ruby
   check "heroku" "version"
   check "git" "--version"
+  check "psql" "--version"
   check "atom" "-v"
   check "et" "-v"
+  check "rails" "-v"
 }
 
 main

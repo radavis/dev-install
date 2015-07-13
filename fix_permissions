@@ -3,7 +3,7 @@ set -e
 exec > >(tee $0.log) 2>&1
 username=$(whoami)
 
-echo "--- Set $HOME to $username:staff u+rw ---"
+echo "--- Set $HOME permissions to $username:staff u+rw ---"
 read -s -p "password: " password
 echo $password | sudo -S chown -R $username:staff $HOME
 echo $password | sudo -S chmod -R u+rw $HOME
