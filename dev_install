@@ -48,4 +48,5 @@ cp .gemrc ~/.gemrc
 bundle install
 
 echo "--- Developer Tools Install Script Complete! ---"
-echo "Please run './dev_check' to verify the installation."
+echo "Restart your terminal to load the new changes."
+echo "Then, run './dev_check' to verify the installation."
