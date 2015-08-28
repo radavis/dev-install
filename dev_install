@@ -20,7 +20,7 @@ echo "--- Install Homebrew ---"
 ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/install/master/install)"
 
 echo "--- Install Apps ---"
-brew tab Homebrew/bundle
+brew tap Homebrew/bundle
 brew bundle
 
 echo "--- Install Oh My ZSH ---"
