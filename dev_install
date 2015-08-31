@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
-exec > >(tee $0.log) 2>&1
+exec > >(tee "$0".log) 2>&1
+username=$(whoami)
 
 # check for Apple XCode
 xcode-select -v
@@ -14,7 +15,7 @@ fi
 echo "--- Make /bin/zsh the default shell ---"
 read -s -p "password: " password
 echo
-echo $password | sudo -S chsh -s /bin/zsh $username
+echo "$password" | sudo -S chsh -s /bin/zsh "$username"
 
 echo "--- Install Homebrew ---"
 ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/install/master/install)"
@@ -28,20 +29,20 @@ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | 
 
 echo "--- Update ~/.zshrc and ~/.bash_profile ---"
 config=$(cat environment)
-echo $config >> ~/.zshrc
-echo $config >> ~/.bash_profile
+echo "$config" >> ~/.zshrc
+echo "$config" >> ~/.bash_profile
 source ~/.bash_profile
 
 echo "--- Install Rubies ---"
 RubyVersions=( '2.0.0-p645' '2.1.6' '2.2.2' );
 for version in "${RubyVersions[@]}"; do
-  ruby-install ruby $version
+  ruby-install ruby "$version"
 done
 
 default_ruby=${RubyVersions[0]}
 echo "--- Set the Default Ruby Version to $default_ruby ---"
-chruby $default_ruby
-echo $default_ruby > ~/.ruby-version
+chruby "$default_ruby"
+echo "$default_ruby" > ~/.ruby-version
 
 echo "--- Install Gems ---"
 cp .gemrc ~/.gemrc

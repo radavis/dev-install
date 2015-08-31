@@ -1,21 +1,9 @@
 #!/bin/bash
-exec > >(tee $0.log) 2>&1
+exec > >(tee "$0".log) 2>&1
 
-black="\033[0;30m"
-dark_gray="\033[1;30m"
-red="\033[0;31m"
-light_red="\033[1;31m"
-green="\033[0;32m"
-light_green="\033[1;32m"
-brown="\033[0;33m"
-yellow="\033[1;33m"
-blue="\033[0;34m"
-light_blue="\033[1;34m"
-purple="\033[0;35m"
-light_purple="\033[1;35m"
 cyan="\033[0;36m"
-light_cyan="\033[1;36m"
-light_gray="\033[0;37m"
+light_purple="\033[1;35m"
+yellow="\033[1;33m"
 white="\033[1;37m"
 no_color="\033[0m"
 
@@ -38,7 +26,7 @@ check() {
   if $(command -v $cmd >/dev/null); then
     result=$(eval "$cmd $flag")
     success "$cmd was detected"
-    response $result
+    response "$result"
   else
     warning "$cmd was not detected!\r\n"
   fi
@@ -54,7 +42,7 @@ check_ruby() {
     warning "Not using a ruby version manager!"
   fi
 
-  response $ruby_path
+  response "$ruby_path"
 }
 
 check_zsh() {
@@ -67,7 +55,7 @@ check_zsh() {
     warning "$username's shell is not /bin/zsh!"
   fi
 
-  response $shell_name
+  response "$shell_name"
 }
 
 main() {
