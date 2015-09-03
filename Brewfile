@@ -1,5 +1,3 @@
-before echo before
-
 brew "chruby"
 brew "git"
 brew "heroku-toolbelt"
@@ -13,7 +11,7 @@ cask "dash"
 cask "dropbox"
 cask "firefox"
 cask "flux"
-cask "github"
+cask "github-desktop"
 cask "gitx"
 cask "google-chrome"
 cask "iterm2"

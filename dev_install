@@ -2,6 +2,8 @@
 set -e
 exec > >(tee $0.log) 2>&1
 
+username=$(whoami)
+
 # check for Apple XCode
 xcode-select -v
 if [ $? -ne 0 ]; then  # need to fix this check or remove
@@ -12,7 +14,7 @@ if [ $? -ne 0 ]; then  # need to fix this check or remove
 fi
 
 echo "--- Make /bin/zsh the default shell ---"
-read -s -p "password: " password
+read -s -p "Password: " password
 echo
 echo $password | sudo -S chsh -s /bin/zsh $username
 
