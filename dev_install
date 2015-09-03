@@ -29,9 +29,8 @@ echo "--- Install Oh My ZSH ---"
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 
 echo "--- Update ~/.zshrc and ~/.bash_profile ---"
-config=$(cat environment)
-echo $config >> ~/.zshrc
-echo $config >> ~/.bash_profile
+cat environment >> ~/.zshrc
+cat environment >> ~/.bash_profile
 source ~/.bash_profile
 
 echo "--- Install Rubies ---"
@@ -47,6 +46,7 @@ echo $default_ruby > ~/.ruby-version
 
 echo "--- Install Gems ---"
 cp .gemrc ~/.gemrc
+gem install bundler
 bundle install
 
 echo "--- Developer Tools Install Script Complete! ---"
