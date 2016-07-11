@@ -2,6 +2,8 @@ cask_args appdir: '/Applications'
 tap "caskroom/cask"
 
 brew "chruby"
+brew "cowsay"
+brew "ffmpeg"
 brew "git"
 brew "heroku-toolbelt"
 brew "imagemagick"

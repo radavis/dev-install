@@ -1,5 +1,0 @@
-alias reload=". ~/.zshrc"
-alias cls="clear"
-alias x="exit"
-alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
-alias nvlc="vlc --intf ncurses --browse-dir $MUSIC"

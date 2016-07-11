@@ -7,7 +7,7 @@ install_rubies() {
     ruby-install ruby $version
   done
 
-  echo ${RubyVersions[0]} > "$HOME/.ruby-version"
+  echo "ruby-${RubyVersions[0]}" > "$HOME/.ruby-version"
 }
 
 install_gems() {
