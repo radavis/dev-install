@@ -1,0 +1,21 @@
+#!/bin/zsh
+set -e
+exec > >(tee $0.log) 2>&1
+
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+for file in $DIR/functions/*; do
+  . $file
+done
+
+#check_xcode
+#create_folders
+#install_homebrew
+#configure_git
+#install_zsh
+install_rubies
+install_pythons
+install_gems
+
+echo "--- Developer Tools Install Script Complete! ---"
+echo "Restart your terminal to load the new changes."
+echo "Then, run './bin/check' to verify the installation."

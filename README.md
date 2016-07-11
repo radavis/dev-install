@@ -2,7 +2,7 @@
 
 Installs all the stuff.
 
-__NOTE:__ This is alpha, and probably doesn't work, yet.
+**NOTE**: This is alpha, and probably doesn't work, yet.
 
 ## Instructions
 
@@ -21,18 +21,18 @@ xcode-select --install
 
 Then, restart your computer.
 
-### Install your Ruby development environment
+### Setup your development environment
 
 ```
 git clone git@github.com:radavis/dev-install.git
 cd dev-install
-./dev_install
+./bin/install
 ```
 
 ### Check that everything went OK.
 
 ```
-./dev_check
+./bin/check
 ```
 
 ### Fix permissions on the home directory
@@ -40,13 +40,13 @@ cd dev-install
 If the script bails out, it is likely that the permissions are screwed up.
 
 ```
-./fix_permissions
+./bin/permissions
 ```
 
-## Run dev_check without cloning the repo.
+## Check your dev environment without cloning the repo.
 
 This is useful if you have installed via [`rocket_fuel`](https://github.com/LaunchAcademy/rocket_fuel) or via Launch Academy's instructions in [Ignition](http://blog.launchacademy.com/ignition-interactive-pre-learning-on-steroids/)
 
 ```
-curl https://raw.githubusercontent.com/radavis/dev-install/master/dev_check | bash
+curl https://raw.githubusercontent.com/radavis/dev-install/master/bin/check | bash
 ```

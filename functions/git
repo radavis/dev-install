@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+configure_git() {
+  echo "git username: "
+  read git_username
+  git config --global user.name "$git_username"
+
+  echo "git email: "
+  read git_email
+  git config --global user.email "$git_email"
+}

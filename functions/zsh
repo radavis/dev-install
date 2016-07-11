@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+install_zsh() {
+  echo "--- Install Oh My ZSH ---"
+  curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+
+  cat config/environment >> ~/.zshrc
+  cp config/.aliases ~
+  cp config/.vars ~
+  source ~/.zshrc
+}

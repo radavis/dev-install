@@ -1,0 +1,25 @@
+# place environment variables in ~/.vars
+if [[ -a ~/.vars ]]; then
+  source ~/.vars
+fi
+
+# place aliases in ~/.aliases
+if [[ -a ~/.aliases ]]; then
+  source ~/.aliases
+fi
+
+# homebrew
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+export PATH="/usr/local/bin:$PATH"
+
+# postgres.app
+export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
+
+# chruby
+source "/usr/local/share/chruby/chruby.sh"
+source "/usr/local/share/chruby/auto.sh"
+
+# python
+export PYENV_ROOT="/usr/local/opt/pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

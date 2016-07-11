@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+install_rubies() {
+  echo "--- Install Rubies ---"
+  RubyVersions=( '2.3.1' '2.2.5' '2.0.0-p648' );
+  for version in "${RubyVersions[@]}"; do
+    ruby-install ruby $version
+  done
+
+  echo ${RubyVersions[0]} > "$HOME/.ruby-version"
+}
+
+install_gems() {
+  echo "--- Install Gems ---"
+  cp config/.gemrc $HOME
+  cp config/.railsrc $HOME
+  gem install bundler
+  bundle install
+}

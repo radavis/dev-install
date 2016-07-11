@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+install_homebrew() {
+  echo "--- Install Homebrew ---"
+  ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/install/master/install)"
+
+  echo "--- Install Apps ---"
+  brew tap Homebrew/bundle
+  brew bundle
+}

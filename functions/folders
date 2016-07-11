@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+create_folders() {
+  Folders=( 'challenges' 'code' 'music' );
+
+  for folder in "${Folders[@]}"; do
+    if [ ! -e "$HOME/$folder" ]; then
+      mkdir "$HOME/$folder"
+    fi
+  done
+}

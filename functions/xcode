@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+check_xcode() {
+  xcode-select -v
+  if [ $? -ne 0 ]; then
+    echo "Apple Xcode command line tools are not installed!"
+    echo "Run 'xcode-select --install'"
+    echo "Once complete, restart your computer and re-run this script."
+    exit 1
+  fi
+}

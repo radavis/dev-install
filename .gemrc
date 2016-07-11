@@ -1,4 +1,0 @@
-gem: --no-document
-:backtrace: true
-:sources:
-- https://rubygems.org
