@@ -4,9 +4,9 @@ if [[ -a ~/.vars ]]; then
 fi
 
 # place aliases in ~/.aliases
-if [[ -a ~/.aliases ]]; then
-  source ~/.aliases
-fi
+# if [[ -a ~/.aliases ]]; then
+#   source ~/.aliases
+# fi
 
 # homebrew
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
