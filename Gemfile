@@ -1,10 +1,7 @@
 source "http://rubygems.org"
 
-gem "et"
-gem "exercism"
 gem "gist"
 gem "hub"
-gem "make_it_so"
 gem "pg"
 gem "pry"
 gem "rails"
