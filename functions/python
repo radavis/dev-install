@@ -2,7 +2,7 @@
 
 install_pythons() {
   echo "--- Install Python ---"
-  PythonVersions=( '3.5.2' '2.7.12' );
+  PythonVersions=( '3.7.4' '2.7.16' );
   for version in "${PythonVersions[@]}"; do
     pyenv install $version
   done

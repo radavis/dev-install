@@ -2,7 +2,7 @@
 
 install_rubies() {
   echo "--- Install Rubies ---"
-  RubyVersions=( '2.5.1' '2.4.4' '2.3.7' );
+  RubyVersions=( '2.6.3' '2.5.5' );
   for version in "${RubyVersions[@]}"; do
     ruby-install ruby $version
   done

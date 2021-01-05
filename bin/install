@@ -7,11 +7,11 @@ for file in $DIR/functions/*; do
   . $file
 done
 
-check_xcode
-create_folders
-install_homebrew
-configure_git
-install_zsh
+# check_xcode
+# create_folders
+# install_homebrew
+# configure_git
+# install_zsh
 install_rubies
 install_pythons
 install_gems
